@@ -72,3 +72,45 @@ button,
 .final span {
     font-size: 19px;
 }
+/* Текст немного темнее и плотнее */
+body {
+    color: #5c402c;
+}
+
+.section p,
+.double p,
+.rsvp p,
+.final p {
+    font-weight: 500;
+    color: #5c402c;
+}
+
+.kicker {
+    font-weight: 500;
+    color: #8b683f;
+}
+
+/* Время сбора гостей */
+.guest-time {
+    margin: 28px 0 25px;
+    text-align: center;
+    color: #8f6635;
+}
+
+.guest-time span {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+
+.guest-time strong {
+    display: block;
+    margin-top: 4px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 500;
+}
