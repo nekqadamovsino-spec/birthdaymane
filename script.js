@@ -1,5 +1,5 @@
 // Вставьте URL опубликованного Google Apps Script Web App, чтобы ответы гостей уходили в Google Таблицу.
-const RSVP_ENDPOINT = "";
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycby6KdnKtKpNi9OlYUp6OT8uuEZbfr9JlsVMOj0_XQHqN-KoOIpvb9wUkEPHgPkPDRhW/exec";
 
 const eventDate = new Date('2026-10-14T12:00:00+03:00'); // время можно поменять здесь
 function tick(){const x=eventDate-new Date(); if(x<=0)return; document.querySelector('#d').textContent=Math.floor(x/86400000);document.querySelector('#h').textContent=Math.floor(x/3600000)%24;document.querySelector('#m').textContent=Math.floor(x/60000)%60}tick();setInterval(tick,30000);
