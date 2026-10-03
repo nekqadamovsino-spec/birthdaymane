@@ -174,3 +174,9 @@ body {
   gap: 24px;
   text-align: center;
 }
+.cross {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    color: #b1844b;
+    line-height: 1;
+}
