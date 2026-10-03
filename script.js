@@ -68,4 +68,3 @@ const music = document.getElementById("weddingMusic");
 
   playMusic();
   updateButton();
-});
