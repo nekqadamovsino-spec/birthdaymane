@@ -6,11 +6,13 @@ function tick(){const x=eventDate-new Date(); if(x<=0)return; document.querySele
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 const form=document.querySelector('#rsvpForm'), status=document.querySelector('#status');
 form.addEventListener('submit',async e=>{e.preventDefault();const data=Object.fromEntries(new FormData(form));data.event='Крещение и День рождения Манэ — 14.10.2026';data.sentAt=new Date().toISOString();if(!RSVP_ENDPOINT){localStorage.setItem('mane-rsvp',JSON.stringify(data));status.textContent='Спасибо! Ваш ответ подтверждён на этом устройстве. Для сбора ответов в таблицу подключите Apps Script.';form.reset();return}try{status.textContent='Отправляем…';await fetch(RSVP_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});status.textContent='Спасибо! Ваш ответ получен.';form.reset()}catch(err){status.textContent='Не удалось отправить. Попробуйте ещё раз.'}});
-const music = document.getElementById("weddingMusic");
+// Музыка
+(() => {
+  const music = document.getElementById("weddingMusic");
   const button = document.getElementById("musicButton");
 
   if (!music || !button) {
-    console.error("Не найден weddingMusic или musicButton");
+    console.warn("Не найден weddingMusic или musicButton");
     return;
   }
 
@@ -28,7 +30,7 @@ const music = document.getElementById("weddingMusic");
       await music.play();
       updateButton();
     } catch (error) {
-      console.log("Автозапуск заблокирован:", error);
+      console.log("Автозапуск музыки заблокирован браузером:", error);
     }
   }
 
@@ -39,8 +41,7 @@ const music = document.getElementById("weddingMusic");
       try {
         await music.play();
       } catch (error) {
-        alert("Музыка не найдена. Проверьте файл music.mp3");
-        console.error(error);
+        console.error("Ошибка воспроизведения музыки:", error);
       }
     } else {
       music.pause();
@@ -50,7 +51,9 @@ const music = document.getElementById("weddingMusic");
   });
 
   function firstTouch(event) {
-    if (event.target.closest("#musicButton")) return;
+    if (event.target.closest("#musicButton")) {
+      return;
+    }
 
     playMusic();
 
@@ -59,12 +62,16 @@ const music = document.getElementById("weddingMusic");
   }
 
   document.addEventListener("click", firstTouch);
-  document.addEventListener("touchstart", firstTouch, {
-    passive: true
-  });
+
+  document.addEventListener(
+    "touchstart",
+    firstTouch,
+    { passive: true }
+  );
 
   music.addEventListener("play", updateButton);
   music.addEventListener("pause", updateButton);
 
   playMusic();
   updateButton();
+})();
